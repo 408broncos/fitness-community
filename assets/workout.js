@@ -3,6 +3,7 @@ const exerciseAPIHeaders = { 'X-API-Key': 'jnUj6AM2P58MuWuD7jCFjg==thxrq1qz9Au6F
 
 const workoutSection = document.getElementById("workout");
 const workbookSection = document.getElementById("workbook");
+const exerciseSuggestions = document.createElement("section");
 const addExerciseBtn = document.createElement("button");
 const findExerciseForm = document.createElement("form");
 findExerciseForm.setAttribute("class", "pure-form pure-form-stacked");
@@ -108,7 +109,8 @@ function createFindExerciseForm() {
 
     fieldColSubmit.appendChild(submit);
     fieldRow.appendChild(fieldColSubmit);
-    findExerciseForm.appendChild(fieldRow);
+    fieldset.appendChild(fieldRow);
+    findExerciseForm.appendChild(fieldset);
 
     workbookSection.appendChild(findExerciseForm);
 }
@@ -129,6 +131,24 @@ function searchForExercises(event) {
         }
     };
     console.log(searchURL);
+
+    fetch(searchURL, {
+        headers: {
+            'X-API-Key': 'jnUj6AM2P58MuWuD7jCFjg==thxrq1qz9Au6FFzl',
+        }
+    }).then(function (response) {
+        console.log(response);
+        return response.json()
+    }).then(function (data) {
+        console.log(data);
+
+        // Add functionality here
+
+
+
+
+    });
+
 
 }
 
