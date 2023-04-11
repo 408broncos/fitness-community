@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
 // import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-analytics.js";
 // import { getDatabase } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
@@ -24,26 +24,53 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+const signup = document.getElementById("sign-up");
+const login = document.getElementById("login")
 
 
-createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        console.log("Success!")
-        console.log(user);
-        // ...
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("Error!");
-        console.log(error);
-        // ..
-    });
+// Handle the login/sign-up screen forms.
+function signupLoginHandler(event) {
+    event.preventDefault();
+    let element = event.target;
+    console.log(element);
+    let email = element[0].children[1].value;
+    let password = element[0].children[2].value;
 
-// const analytics = getAnalytics(app);
-// // Initialize Realtime Database and get a reference to the service
-// const database = getDatabase(app);
-// Initialize Firebase Authentication and get a reference to the service
+    if (element.id == "sign-up") {
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                console.log("Sign Up Success!")
+                console.log(user);
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log("Sign Up Error!");
+                console.log(errorCode, errorMessage);
+                // ..
+            });
+    } else if (element.id == "login") {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                console.log("Login Success!")
+                console.log(user);
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log("Login Error!");
+                console.log(errorCode, errorMessage);
+            });
 
+    }
+
+};
+
+signup.addEventListener("submit", signupLoginHandler);
+login.addEventListener("submit", signupLoginHandler);
