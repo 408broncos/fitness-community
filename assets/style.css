@@ -16,7 +16,7 @@
 
 body {
     line-height: 1.7em;
-    color: #7f8c8d;
+    color: #070808;
     font-size: 16px;
     flex-wrap: wrap;
     background-color: #9edce0;
@@ -34,4 +34,25 @@ section .splash{
     flex-wrap: wrap;
 
 }
+
+#id {
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    border: 1px solid black;
+    margin-right: 10px;
+  }
+
+  .border-box {
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    border: 1px solid black;
+    margin-right: 10px;
+  }
+  
+  .current-day {
+    background-color: yellow;
+  }
+  
 
