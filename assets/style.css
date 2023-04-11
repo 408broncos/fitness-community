@@ -4,16 +4,28 @@
     box-sizing: border-box;
 }
 
+.wrapper {
+    background: linear-gradient(to right, #E6831D 20%, #FFF 20%) bottom .5em left .8em no-repeat, linear-gradient(#323A45, #323A45);
+    background-size: 100% 1px, 100% 100%;
+    padding: .8em;
+    color: #FDFFFE;
+    font-size: 30px;
+    font-family: sans-serif;
+    font-weight: lighter;
+}
+
 body {
     line-height: 1.7em;
     color: #7f8c8d;
     font-size: 16px;
     flex-wrap: wrap;
+    background-color: #9edce0;
 }
 
 section #login, #sign-up{
     padding: 40px;
     flex-wrap: wrap;
+    border: #7f8c8d 0 1;
 
 }
 
