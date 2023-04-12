@@ -105,6 +105,7 @@ function changeActiveDay(event) {
     console.log(element);
     activeDay = element.dataset.day;
     colorActiveDay();
+    console.log(activeDay);
 }
 
 function colorActiveDay() {
