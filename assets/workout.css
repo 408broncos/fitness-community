@@ -2,6 +2,10 @@ fieldset {
     all: unset;
 }
 
+.current-day {
+    background: yellow;
+}
+
 /* Copied and pasted out of materialize.css */
 
 .btn {

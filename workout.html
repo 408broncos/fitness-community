@@ -27,13 +27,13 @@
             <section id="weekly-schedule" class="dark-blue pa3 flex flex-column items-center">
                 <h2>Weekly Schedule</h2>
                 <div class="flex" id="schedule">
-                    <span class="ba pa4 ma2" id="day-1">Mon</span>
-                    <span class="ba pa4 ma2" id="day-2">Tue</span>
-                    <span class="ba pa4 ma2" id="day-3">Wed</span>
-                    <span class="ba pa4 ma2" id="day-4">Thu</span>
-                    <span class="ba pa4 ma2" id="day-5">Fri</span>
-                    <span class="ba pa4 ma2" id="day-6">Sat</span>
-                    <span class="ba pa4 ma2" id="day-0">Sun</span>
+                    <span class="ba pa4 ma2" data-day="1" id="day-1">Mon</span>
+                    <span class="ba pa4 ma2" data-day="2" id="day-2">Tue</span>
+                    <span class="ba pa4 ma2" data-day="3" id="day-3">Wed</span>
+                    <span class="ba pa4 ma2" data-day="4" id="day-4">Thu</span>
+                    <span class="ba pa4 ma2" data-day="5" id="day-5">Fri</span>
+                    <span class="ba pa4 ma2" data-day="6" id="day-6">Sat</span>
+                    <span class="ba pa4 ma2" data-day="0" id="day-0">Sun</span>
                 </div>
             </section>
             <section id="workbook" class="w-100 flex">
@@ -122,6 +122,8 @@
 
     <!-- jBox code -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.2/dist/jBox.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.2/dist/jBox.all.min.css" rel="stylesheet">
 
