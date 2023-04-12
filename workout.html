@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/normalize.css">
-    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css" />
 
 
 
@@ -20,23 +19,23 @@
         <h1>Workout Functionality Test Page</h1>
     </header>
     <main class="w-100">
-        <section id="workout" class="fl w-20 vh-100 pa2 flex flex-column items-center bg-washed-red ">
+        <section id="workout" class="fl w-25 vh-100 pa2 flex flex-column items-center bg-washed-red ">
             <h2 class="">Workout Section</h2>
         </section>
-        <section class="fr w-80 vh-100 pa2 bg-washed-blue">
+        <section class="fr w-75 vh-100 pa2 bg-washed-blue">
             <section id="weekly-schedule" class="dark-blue pa3 flex flex-column items-center">
                 <h2>Weekly Schedule</h2>
-                <div class="flex" id="schedule">
-                    <span class="ba pa4 ma2" data-day="1" id="day-1">Mon</span>
-                    <span class="ba pa4 ma2" data-day="2" id="day-2">Tue</span>
-                    <span class="ba pa4 ma2" data-day="3" id="day-3">Wed</span>
-                    <span class="ba pa4 ma2" data-day="4" id="day-4">Thu</span>
-                    <span class="ba pa4 ma2" data-day="5" id="day-5">Fri</span>
-                    <span class="ba pa4 ma2" data-day="6" id="day-6">Sat</span>
-                    <span class="ba pa4 ma2" data-day="0" id="day-0">Sun</span>
+                <div class="flex mw-100" id="schedule">
+                    <span class="ba pa3 pa4-l ma2" data-day="1" id="day-1">Mon</span>
+                    <span class="ba pa3 pa4-l ma2" data-day="2" id="day-2">Tue</span>
+                    <span class="ba pa3 pa4-l ma2" data-day="3" id="day-3">Wed</span>
+                    <span class="ba pa3 pa4-l ma2" data-day="4" id="day-4">Thu</span>
+                    <span class="ba pa3 pa4-l ma2" data-day="5" id="day-5">Fri</span>
+                    <span class="ba pa3 pa4-l ma2" data-day="6" id="day-6">Sat</span>
+                    <span class="ba pa3 pa4-l ma2" data-day="0" id="day-0">Sun</span>
                 </div>
             </section>
-            <section id="workbook" class="w-100 flex">
+            <section id="workbook" class="w-100 flex flex-column flex-row-m">
                 <section id="add-exercise" class="fl w-40 h-100 pa2">
                     <form class="card pa3">
                         <h3>Add an Exercise</h3>
@@ -60,12 +59,12 @@
                                 <p>Select what you're looking for by word, type, muscle, and/or difficulty to generate
                                     some suggestions.</p>
                             </div>
-                            <div class="w-100 pa1 flex justify-between">
-                                <div class="w-22 flex flex-column">
+                            <div class="w-100 pa1 flex flex-column flex-row-l justify-between">
+                                <div class="w-25-l ma3 flex flex-column">
                                     <label>Filter by Word</label>
                                     <input type="text" name="exercise-name" placeholder="ex. press, sit, etc.">
                                 </div>
-                                <div class="w-22 flex flex-column">
+                                <div class="w-25-l ma3 flex flex-column">
                                     <label>Filter by Type</label>
                                     <select id="type" name="type">
                                         <option value="" selected="selected">Select a type...</option>
@@ -78,7 +77,7 @@
                                         <option value="strongman">Strongman</option>
                                     </select>
                                 </div>
-                                <div class="w-22 flex flex-column">
+                                <div class="w-25-l ma3 flex flex-column">
                                     <label>Filter by Muscle</label>
                                     <select id="muscle" name="muscle">
                                         <option value="" selected="selected">Select a muscle...</option>
@@ -100,7 +99,7 @@
                                         <option value="triceps">Triceps</option>
                                     </select>
                                 </div>
-                                <div class="w-22 flex flex-column">
+                                <div class="w-25-l ma3 flex flex-column">
                                     <label>Filter by Difficulty</label>
                                     <select id="difficulty" name="difficulty">
                                         <option value="" selected="selected">Select a difficulty...</option>
