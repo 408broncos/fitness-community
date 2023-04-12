@@ -11,8 +11,9 @@ const exerciseDetails = document.getElementById("exercise-details");
 const newIdeasSection = document.getElementById("new-ideas");
 const newIdeasButtonArea = document.getElementById("button-area");
 const findExerciseForm = document.getElementById("find-exercise-form");
-// findExerciseForm.setAttribute("class", "col s6");
+const scheduleDays = document.getElementById("schedule");
 
+let activeDay;
 let workoutList = [];
 let suggestionList;
 
@@ -99,18 +100,36 @@ function popupDetails(event) {
     modal.open();
 }
 
+function changeActiveDay(event) {
+    let element = event.target;
+    console.log(element);
+    activeDay = element.dataset.day;
+    colorActiveDay();
+    console.log(activeDay);
+}
+
+function colorActiveDay() {
+    let day = activeDay;
+    let dayString = "day-" + day;
+    for (let i = 0; i < scheduleDays.children.length; i++) {
+        if (scheduleDays.children[i].getAttribute("id") == dayString) {
+            scheduleDays.children[i].classList.add("current-day");
+        } else {
+            scheduleDays.children[i].classList.remove("current-day");
+        }
+    }
+}
+
+function init() {
+    activeDay = dayjs().day();
+    colorActiveDay();
+}
 
 findExerciseForm.addEventListener("submit", searchForExercises);
 newIdeasButtonArea.addEventListener("click", popupDetails);
+scheduleDays.addEventListener("click", changeActiveDay);
 
 
-// $(document).ready(function () {
-//     var myModal = new jBox('Modal', {
-//         attach: '.exercise-suggestion',
-//         title: 'Hurray!',
-//         content: 'This is my modal window'
-//     });
-// })
-
+init();
 
 

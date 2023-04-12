@@ -2,6 +2,14 @@ fieldset {
     all: unset;
 }
 
+.current-day {
+    background: yellow;
+}
+
+#schedule span {
+    max-width: 8%;
+}
+
 /* Copied and pasted out of materialize.css */
 
 .btn {
