@@ -5,15 +5,112 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
-        integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/normalize.css">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css" />
+
+
+
+
+    <link rel="stylesheet" href="assets/workout.css">
     <title>Workout Testing Page</title>
 </head>
 
-<body>
-    <section id="workout"></section>
-    <section id="workbook"></section>
+<body class="w-100 sans-serif">
+    <header class="absolute--fill-m pa3 ph5-ns light-gray bg-purple flex justify-center">
+        <h1>Workout Functionality Test Page</h1>
+    </header>
+    <main class="w-100">
+        <section id="workout" class="fl w-25 vh-100 pa2 flex flex-column items-center bg-washed-red ">
+            <h2 class="">Workout Section</h2>
+        </section>
+        <section class="fr w-75 vh-100">
+            <section id="weekly-schedule" class="dark-blue bg-washed-blue pa3 flex flex-wrap justify-center">
+                <h2>Weekly Schedule</h2>
+                <div class="flex" id="schedule">
+                    <span class="ba pa4 ma2" id="day-1">Mon</span>
+                    <span class="ba pa4 ma2" id="day-2">Tue</span>
+                    <span class="ba pa4 ma2" id="day-3">Wed</span>
+                    <span class="ba pa4 ma2" id="day-4">Thu</span>
+                    <span class="ba pa4 ma2" id="day-5">Fri</span>
+                    <span class="ba pa4 ma2" id="day-6">Sat</span>
+                    <span class="ba pa4 ma2" id="day-0">Sun</span>
+                </div>
+            </section>
+            <section id="workbook" class="w-100">
+                <section id="add-exercise" class="fl w-50 h-100 pa2">
+                    <form class="card pa3">
+                        <h3>Add an Exercise</h3>
+                        <div class="input-field col s12">
+                            <label for="exercise-name">Exercise Name</label>
+                            <input type="text" name="exercise-name">
+                        </div>
+                        <div class="input-field col s12">
+                            <label for="exercise-desc">Exercise Description</label>
+                            <textarea name="exercise-desc" rows="4" cols="40"></textarea>
+                        </div>
+                        <button type="submit" class="btn">Add to Workout</button>
+                    </form>
+                </section>
+                <section id="new-ideas" class="w-100 pa2 flex flex-column">
+                    <section id="find-exercise" class="card pa3">
+                        <form id="find-exercise-form">
+                            <div class="w-100">
+                                <h2>Looking for Exercise Ideas?</h2>
+                                <p>Select what you're looking for by name, type, muscle, and/or difficulty to generate
+                                    some suggestions.</p>
+                            </div>
+                            <div class="w-100 pa1 flex justify-between">
+                                <div class="w-20 flex flex-column">
+                                    <label>Filter by Name</label>
+                                    <input type="text" name="exercise-name" placeholder="ex. press">
+                                </div>
 
+                                <select id="type" name="type">
+                                    <option value="" selected="selected">Select a type...</option>
+                                    <option value="cardio">Cardio</option>
+                                    <option value="olympic_weightlifting">Olympic Weightlifting</option>
+                                    <option value="plyometrics">Plyometrics</option>
+                                    <option value="powerlifting">Powerlifting</option>
+                                    <option value="strength">Strength</option>
+                                    <option value="stretching">Stretching</option>
+                                    <option value="strongman">Strongman</option>
+                                </select>
+                                <select id="muscle" name="muscle">
+                                    <option value="" selected="selected">Select a muscle...</option>
+                                    <option value="abdominals">Abdominals</option>
+                                    <option value="abductors">Abductors</option>
+                                    <option value="adductors">Adductors</option>
+                                    <option value="biceps">Biceps</option>
+                                    <option value="calves">Calves</option>
+                                    <option value="chest">Chest</option>
+                                    <option value="forearms">Forearms</option>
+                                    <option value="glutes">Glutes</option>
+                                    <option value="hamstrings">Hamstrings</option>
+                                    <option value="lats">Lats</option>
+                                    <option value="lower_back">Lower Back</option>
+                                    <option value="middle_back">Middle Back</option>
+                                    <option value="neck">Neck</option>
+                                    <option value="quadriceps">Quadriceps</option>
+                                    <option value="traps">Traps</option>
+                                    <option value="triceps">Triceps</option>
+                                </select>
+                                <select id="difficulty" name="difficulty">
+                                    <option value="" selected="selected">Select a difficulty...</option>
+                                    <option value="beginner">Beginner</option>
+                                    <option value="intermediate">Intermediate</option>
+                                    <option value="expert">Expert</option>
+                                </select>
+                                <button type="submit" class="btn">Search</button>
+                            </div>
+                    </section>
+                    <section id="button-area"></section>
+
+                </section>
+                </div>
+            </section>
+    </main>
+
+    <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
     <script src="assets/workout.js"></script>
 </body>
 

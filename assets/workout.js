@@ -3,12 +3,15 @@ const exerciseAPIHeaders = { 'X-API-Key': 'jnUj6AM2P58MuWuD7jCFjg==thxrq1qz9Au6F
 
 const workoutSection = document.getElementById("workout");
 const workbookSection = document.getElementById("workbook");
-const exerciseSuggestions = document.createElement("section");
-const addExerciseBtn = document.createElement("button");
-const findExerciseForm = document.createElement("form");
-findExerciseForm.setAttribute("class", "pure-form pure-form-stacked");
+const addExerciseSection = document.getElementById("add-exercise");
+const exerciseDetails = document.getElementById("exercise-details");
+const newIdeasSection = document.getElementById("new-ideas");
+const newIdeasButtonArea = document.getElementById("button-area");
+const findExerciseForm = document.getElementById("find-exercise-form");
+// findExerciseForm.setAttribute("class", "col s6");
 
 let workoutList = [];
+let suggestionList;
 
 const exerciseOptions = {
     type: [
@@ -48,9 +51,9 @@ const exerciseOptions = {
 function createFindExerciseForm() {
     let fieldset = document.createElement("fieldset");
     let fieldRow = document.createElement("div");
-    fieldRow.setAttribute("class", "pure-g");
+    fieldRow.setAttribute("class", "row");
     let fieldColName = document.createElement("div");
-    fieldColName.setAttribute("class", "pure-u-md-1-4")
+    fieldColName.setAttribute("class", "fl w-25 pa1")
 
     let name = document.createElement("input");
     name.type = "text";
@@ -70,7 +73,7 @@ function createFindExerciseForm() {
     // Iterate over that array, creating Select fields with an id of that object
     for (let i = 0; i < keys.length; i++) {
         let fieldCol = document.createElement("div");
-        fieldCol.setAttribute("class", "pure-u-md-1-4");
+        fieldCol.setAttribute("class", "input-field col s3");
 
         let label = document.createElement("label");
         label.setAttribute("for", keys[i]);
@@ -78,7 +81,7 @@ function createFindExerciseForm() {
         let select = document.createElement("select");
         select.setAttribute("id", keys[i]);
         select.setAttribute("name", keys[i]);
-        select.setAttribute("class", "pure-input");
+        // select.setAttribute("class", "pure-input");
 
         // Get the options array for the current key
         let options = exerciseOptions[keys[i]];
@@ -94,28 +97,26 @@ function createFindExerciseForm() {
             optionEl.textContent = options[j];
             select.appendChild(optionEl);
         }
-        fieldCol.appendChild(label);
         fieldCol.appendChild(select);
+        fieldCol.appendChild(label);
         fieldRow.appendChild(fieldCol);
     }
 
     let fieldColSubmit = document.createElement("div");
-    fieldColSubmit.setAttribute("class", "pure-u-1");
+    fieldColSubmit.setAttribute("class", "col s12 right-align");
 
     let submit = document.createElement("input");
     submit.type = "submit";
     submit.value = "Search";
-    submit.setAttribute("class", "pure-button");
+    submit.setAttribute("class", "btn");
 
     fieldColSubmit.appendChild(submit);
-    fieldRow.appendChild(fieldColSubmit);
     fieldset.appendChild(fieldRow);
+    fieldset.appendChild(fieldColSubmit);
     findExerciseForm.appendChild(fieldset);
 
-    workbookSection.appendChild(findExerciseForm);
+    newIdeasSection.appendChild(findExerciseForm);
 }
-
-
 
 function searchForExercises(event) {
     event.preventDefault();
@@ -141,8 +142,15 @@ function searchForExercises(event) {
         return response.json()
     }).then(function (data) {
         console.log(data);
+        for (let i = 0; i < data.length; i++) {
+            let button = document.createElement("button");
+            button.textContent = data[i].name;
+            button.setAttribute("class", "btn");
+            newIdeasButtonArea.appendChild(button);
+        }
 
-        // Add functionality here
+        suggestionList = data;
+
 
 
 
@@ -152,6 +160,6 @@ function searchForExercises(event) {
 
 }
 
-createFindExerciseForm();
+// createFindExerciseForm();
 
 findExerciseForm.addEventListener("submit", searchForExercises);
