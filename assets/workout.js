@@ -120,6 +120,7 @@ function createFindExerciseForm() {
 
 function searchForExercises(event) {
     event.preventDefault();
+    newIdeasButtonArea.innerHTML = "";
     console.log(event);
     let searchURL = "";
     searchURL += exerciseAPIBaseURL;
@@ -145,7 +146,7 @@ function searchForExercises(event) {
         for (let i = 0; i < data.length; i++) {
             let button = document.createElement("button");
             button.textContent = data[i].name;
-            button.setAttribute("class", "btn");
+            button.setAttribute("class", "btn ma1");
             newIdeasButtonArea.appendChild(button);
         }
 
