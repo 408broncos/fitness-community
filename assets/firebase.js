@@ -1,11 +1,6 @@
-
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
-
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -28,9 +23,8 @@ const signup = document.getElementById("sign-up");
 const login = document.getElementById("login");
 const errorMessageSection = document.getElementById("error-message");
 
-console.log(signup);
-console.log(login);
-
+let userDisplayName;
+let uid;
 
 function appendErrorMessage(message) {
     errorMessageSection.innerHTML = "";
@@ -41,6 +35,8 @@ function appendErrorMessage(message) {
 }
 
 function simulateRedirect() {
+    document.getElementById("user-display-name").textContent = "Welcome, " + userDisplayName + "!";
+    document.getElementById("user-display-name").classList.toggle("dn");
     document.getElementById("signed-in-content").classList.toggle("dn");
     document.getElementById("signed-out-content").classList.toggle("dn");
 }
@@ -51,8 +47,6 @@ function loginHandler(event) {
     let element = event.target;
     let email = element.children[1].children[0].value;
     let password = element.children[1].children[1].value;
-    console.log(email);
-    console.log(password);
 
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -60,6 +54,8 @@ function loginHandler(event) {
             const user = userCredential.user;
             console.log("Login Success!")
             console.log(user);
+            userDisplayName = user.displayName;
+            uid = user.uid;
             // ...
             simulateRedirect();
         })
@@ -78,9 +74,6 @@ function signupHandler(event) {
     let name = document.getElementById("sign-up-name").value;
     let email = document.getElementById("sign-up-email").value;
     let password = document.getElementById("sign-up-password").value;
-    console.log(name);
-    console.log(email);
-    console.log(password);
 
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -92,6 +85,9 @@ function signupHandler(event) {
             }).then(function () {
                 console.log(user)
                 // ...
+                console.log(user.displayName);
+                userDisplayName = user.displayName;
+                uid = user.uid;
                 simulateRedirect()
             });
 
