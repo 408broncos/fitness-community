@@ -89,11 +89,18 @@ function searchForExercises(event) {
 function popupDetails(event) {
     let element = event.target;
     console.log(element);
-    let modal = new jBox('Modal');
+    let modal = new jBox('Modal', {
+        width: 600,
+        height: 600,
+        responsiveWidth: true,
+        responsiveHeight: true,
+
+    });
     let exerciseObject = suggestionList[element.dataset.position];
     console.log(exerciseObject);
     let name = exerciseObject.name;
     let instructions = exerciseObject.instructions;
+    let addToWorkoutBtn = "<button class='btn' id='add-to-workout-modal'>Add to Workout</button>";
 
     modal.setTitle(name).setContent(instructions);
 

@@ -1,3 +1,7 @@
+:root {
+    --orange: #e9a057;
+}
+
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -22,12 +26,12 @@ body {
     background-color: #9edce0;
 }
 
-section #login, #sign-up{
+/* section #login, #sign-up{
     padding: 40px;
     flex-wrap: wrap;
     border: #7f8c8d 0 1;
 
-}
+} */
 
 section .splash{
     text-align: center;
@@ -56,3 +60,6 @@ section .splash{
   }
   
 
+.bg-custom-orange {
+    background-color: var(--orange);
+}

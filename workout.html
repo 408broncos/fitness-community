@@ -35,7 +35,7 @@
                     <span class="ba pa3 pa4-l ma2" data-day="0" id="day-0">Sun</span>
                 </div>
             </section>
-            <section id="workbook" class="w-100 flex flex-column flex-row-m">
+            <section id="workbook" class="w-100 flex">
                 <section id="add-exercise" class="fl w-40 h-100 pa2">
                     <form class="card pa3">
                         <h3>Add an Exercise</h3>
@@ -59,14 +59,14 @@
                                 <p>Select what you're looking for by word, type, muscle, and/or difficulty to generate
                                     some suggestions.</p>
                             </div>
-                            <div class="w-100 pa1 flex flex-column flex-row-l justify-between">
-                                <div class="w-25-l ma3 flex flex-column">
+                            <div class="w-100 pa1 flex flex-column justify-between">
+                                <div class="w-50-l ma3 flex flex-column flex-row-l justify-between-l">
                                     <label>Filter by Word</label>
                                     <input type="text" name="exercise-name" placeholder="ex. press, sit, etc.">
                                 </div>
-                                <div class="w-25-l ma3 flex flex-column">
-                                    <label>Filter by Type</label>
-                                    <select id="type" name="type">
+                                <div class="w-50-l ma3 flex flex-column flex-row-l justify-between-l">
+                                    <label class="w-50">Filter by Type</label>
+                                    <select id="type" name="type" class="w-50">
                                         <option value="" selected="selected">Select a type...</option>
                                         <option value="cardio">Cardio</option>
                                         <option value="olympic_weightlifting">Olympic Weightlifting</option>
@@ -77,9 +77,9 @@
                                         <option value="strongman">Strongman</option>
                                     </select>
                                 </div>
-                                <div class="w-25-l ma3 flex flex-column">
-                                    <label>Filter by Muscle</label>
-                                    <select id="muscle" name="muscle">
+                                <div class="w-50-l ma3 flex flex-column flex-row-l justify-between-l">
+                                    <label class="w-50">Filter by Muscle</label>
+                                    <select class="w-50" id="muscle" name="muscle">
                                         <option value="" selected="selected">Select a muscle...</option>
                                         <option value="abdominals">Abdominals</option>
                                         <option value="abductors">Abductors</option>
