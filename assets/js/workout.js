@@ -1,4 +1,4 @@
-// Firebase stuff
+//**  Firebase Variables  **//
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
@@ -24,94 +24,9 @@ const signup = document.getElementById("sign-up");
 const login = document.getElementById("login");
 const errorMessageSection = document.getElementById("error-message");
 
+// User Variables stored Globally
 let userDisplayName;
 let uid;
-
-function appendErrorMessage(message) {
-    errorMessageSection.innerHTML = "";
-    let div = document.createElement("div");
-    div.setAttribute("class", "ma5 pa3 bg-white");
-    div.innerHTML = "<h2>Oops! Something went wrong...</h2><p>" + message + "</p>";
-    errorMessageSection.appendChild(div);
-}
-
-function simulateRedirect() {
-    document.getElementById("user-display-name").textContent = "Welcome, " + userDisplayName + "!";
-    document.getElementById("user-display-name").classList.toggle("dn");
-    document.getElementById("signed-in-content").classList.toggle("dn");
-    document.getElementById("signed-out-content").classList.toggle("dn");
-    init();
-}
-
-// Handle the login/sign-up screen forms.
-function loginHandler(event) {
-    event.preventDefault();
-    let element = event.target;
-    let email = element.children[1].children[0].value;
-    let password = element.children[1].children[1].value;
-
-    signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            console.log("Login Success!")
-            console.log(user);
-            userDisplayName = user.displayName;
-            uid = user.uid;
-
-            // ...
-            simulateRedirect();
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log("Login Error!");
-            console.log(errorCode, errorMessage);
-            appendErrorMessage(errorMessage);
-        });
-}
-
-function signupHandler(event) {
-    event.preventDefault();
-    let element = event.target;
-    let name = document.getElementById("sign-up-name").value;
-    let email = document.getElementById("sign-up-email").value;
-    let password = document.getElementById("sign-up-password").value;
-
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Sign up successful
-            const user = userCredential.user;
-            console.log("Sign Up Success!");
-            updateProfile(user, {
-                displayName: name
-            }).then(function () {
-                console.log(user)
-                // ...
-                console.log(user.displayName);
-                userDisplayName = user.displayName;
-                uid = user.uid;
-                simulateRedirect()
-            });
-
-
-
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log("Sign Up Error!");
-            console.log(errorCode, errorMessage);
-            // ..
-            appendErrorMessage(errorMessage);
-        });
-
-}
-
-login.addEventListener("submit", loginHandler);
-signup.addEventListener("submit", signupHandler);
-document.getElementById("toggle-signin").addEventListener("click", simulateRedirect);
-
 
 // API variables
 const iqAir = "1c89bd54-fc84-44cd-adb6-a840d493e162";
@@ -137,29 +52,11 @@ const aqiCity = document.getElementById("aqi-city");
 const aqiState = document.getElementById("aqi-state");
 const aqiCountry = document.getElementById("aqi-country");
 
-console.log(aqiForm);
-
 // Global Storage Variables
 let activeDay = dayjs().day();
 let suggestionList;
 let savedWorkouts;
 let weeklyWorkoutArray;
-
-function initializeWeeklyWorkoutArray() {
-    if (uid) {
-        savedWorkouts = localStorage.getItem(uid);
-    } else {
-        savedWorkouts = localStorage.getItem("anonymous");
-    }
-
-    if (savedWorkouts) {
-        weeklyWorkoutArray = JSON.parse(savedWorkouts);
-    } else {
-        weeklyWorkoutArray = [
-            [], [], [], [], [], [], []
-        ];
-    }
-}
 
 const daysOfTheWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const exerciseOptions = {
@@ -197,6 +94,102 @@ const exerciseOptions = {
     ]
 }
 
+function initializeWeeklyWorkoutArray() {
+    if (uid) {
+        savedWorkouts = localStorage.getItem(uid);
+    } else {
+        savedWorkouts = localStorage.getItem("anonymous");
+    }
+
+    if (savedWorkouts) {
+        weeklyWorkoutArray = JSON.parse(savedWorkouts);
+    } else {
+        weeklyWorkoutArray = [
+            [], [], [], [], [], [], []
+        ];
+    }
+}
+
+//** Firebase Functions **//
+function appendErrorMessage(message) {
+    errorMessageSection.innerHTML = "";
+    let div = document.createElement("div");
+    div.setAttribute("class", "ma5 pa3 bg-white");
+    div.innerHTML = "<h2>Oops! Something went wrong...</h2><p>" + message + "</p>";
+    errorMessageSection.appendChild(div);
+}
+
+function simulateRedirect() {
+    document.getElementById("user-display-name").textContent = "Welcome, " + userDisplayName + "!";
+    document.getElementById("user-display-name").classList.toggle("dn");
+    document.getElementById("signed-in-content").classList.toggle("dn");
+    document.getElementById("signed-out-content").classList.toggle("dn");
+    init();
+}
+
+function loginHandler(event) {
+    event.preventDefault();
+    let element = event.target;
+    let email = element.children[1].children[0].value;
+    let password = element.children[1].children[1].value;
+
+    signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            console.log("Login Success!")
+            console.log(user);
+            userDisplayName = user.displayName;
+            uid = user.uid;
+            simulateRedirect();
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log("Login Error!");
+            console.log(errorCode, errorMessage);
+            appendErrorMessage(errorMessage);
+        });
+}
+
+function signupHandler(event) {
+    event.preventDefault();
+    let element = event.target;
+    let name = document.getElementById("sign-up-name").value;
+    let email = document.getElementById("sign-up-email").value;
+    let password = document.getElementById("sign-up-password").value;
+
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Sign up successful
+            const user = userCredential.user;
+            console.log("Sign Up Success!");
+            updateProfile(user, {
+                displayName: name
+            }).then(function () {
+                console.log(user)
+                // ...
+                console.log(user.displayName);
+                userDisplayName = user.displayName;
+                uid = user.uid;
+                simulateRedirect()
+            });
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log("Sign Up Error!");
+            console.log(errorCode, errorMessage);
+            appendErrorMessage(errorMessage);
+        });
+}
+
+login.addEventListener("submit", loginHandler);
+signup.addEventListener("submit", signupHandler);
+document.getElementById("toggle-signin").addEventListener("click", simulateRedirect);
+
+
+//** Workout Functions */
 function saveWorkout() {
     let key = "anonymous";
     if (uid) {
@@ -248,7 +241,6 @@ function constructWorkoutSection() {
         }
     })
     clearWholeDayElement.addEventListener("click", clearDaySchedule);
-
 }
 
 function addExerciseToSchedule(name, reps, desc) {
@@ -274,6 +266,8 @@ function clearDaySchedule() {
     constructWorkoutSection();
 }
 
+
+//** Air Quality Index Functions *//
 function updateAQI(aqius, icon) {
     let aqidiv = document.createElement("div");
     aqidiv.setAttribute("id", "aqi-display-block");
@@ -322,6 +316,8 @@ function aqiFormHandler(event) {
     getIQAirData(city, state, country);
 }
 
+
+//** Ninja API's Exercises API Functions *//
 function searchForExercises(event) {
     event.preventDefault();
     newIdeasButtonArea.innerHTML = "";
@@ -353,6 +349,8 @@ function searchForExercises(event) {
     });
 }
 
+
+//** jBox Modal Functions *//
 function popupNewExerciseDetails(event) {
     let element = event.target;
     if (element.tagName == "BUTTON") {
@@ -419,6 +417,8 @@ function popupListedExercise(event) {
     }
 }
 
+
+//** Functions for building your Schedule *//
 function changeActiveDay(event) {
     let element = event.target;
     activeDay = element.dataset.day;
@@ -446,6 +446,8 @@ function addExerciseHandler(event) {
     addExerciseToSchedule(name, reps, desc);
 }
 
+
+// Initialize page on login
 function init() {
     initializeWeeklyWorkoutArray();
     activeDay = dayjs().day();
@@ -458,6 +460,4 @@ function init() {
     workoutSection.addEventListener("click", popupListedExercise);
     aqiForm.addEventListener("submit", aqiFormHandler);
 }
-
-// init();
 
