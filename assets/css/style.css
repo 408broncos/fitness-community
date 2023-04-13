@@ -1,11 +1,15 @@
-:root {
-    --orange: #e9a057;
-}
-
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+body {
+    line-height: 1.7em;
+    color: #070808;
+    font-size: 16px;
+    flex-wrap: wrap;
+    background-color: #9edce0;
 }
 
 .wrapper {
@@ -17,53 +21,11 @@
     font-family: sans-serif;
     font-weight: lighter;
 }
-
-body {
-    line-height: 1.7em;
-    color: #070808;
-    font-size: 16px;
-    flex-wrap: wrap;
-    background-color: #9edce0;
-}
-
-/* section #login, #sign-up{
-    padding: 40px;
-    flex-wrap: wrap;
-    border: #7f8c8d 0 1;
-
-} */
-
-section .splash{
-    text-align: center;
-    flex-wrap: wrap;
-
-}
-
-#id {
-    display: inline-block;
-    width: 100px;
-    height: 50px;
-    border: 1px solid black;
-    margin-right: 10px;
-  }
-
-  .border-box {
-    display: inline-block;
-    width: 100px;
-    height: 50px;
-    border: 1px solid black;
-    margin-right: 10px;
-  }
   
-  .current-day {
+.current-day {
     background-color: #96CCFF;
-
-  }
-  
-
-.bg-custom-orange {
-    background-color: var(--orange);
 }
+
 
 .listed-exercise {
     cursor: pointer;
@@ -71,6 +33,11 @@ section .splash{
 
 fieldset {
     all: unset;
+}
+
+.listed-exercise {
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* Copied and pasted out of materialize.css */
@@ -112,13 +79,7 @@ fieldset {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
     position: relative;
     margin: 0.5rem 0 1rem 0;
-    /* background-color: #fff; */
     -webkit-transition: -webkit-box-shadow .25s;
     transition: box-shadow .25s, -webkit-box-shadow .25s;
     border-radius: 2px;
-}
-
-.listed-exercise {
-    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
