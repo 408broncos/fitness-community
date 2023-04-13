@@ -61,6 +61,16 @@ var repEl = $('input[type="number"]');
 var workoutSectionEl = $('#workout');
 var exerciseCount = 1;
 
+function addExerciseToSchedule() {
+  let exerciseName = nameEl.val();
+  let exerciseReps = repEl.val();
+  let exerciseObject = {
+    name: exerciseName,
+    reps: exerciseReps
+  };
+  weeklyWorkoutArray[activeDay].push(exerciseObject);
+}
+
 function handleFormSubmit(event) {
   event.preventDefault();
 
@@ -71,24 +81,24 @@ function handleFormSubmit(event) {
   var exerciseName = nameEl.val();
   var exerciseDesc = descripEl.val();
   var exerciseReps = repEl.val();
-  var checkedEl = $('input:checked'); 
+  var checkedEl = $('input:checked');
 
-   $.each(checkedEl, function (i, elm) {
+  $.each(checkedEl, function (i, elm) {
     console.log("elm");
     console.log(elm);
     console.log(elm.value);
     console.log($(elm));
     selected.push($(elm).val());
   });
-  
-  var exerciseHTML = '<div class="exercise-item">' +
-  '<h3>Exercise ' + exerciseCount + ': ' + exerciseName + '</h3>' +
-  '<p>Description: ' + exerciseDesc + '</p>' +
-  '<p>Reps: ' + exerciseReps + '</p>' +
-'</div>';
 
-workoutSectionEl.append(exerciseHTML);
-exerciseCount++;
+  var exerciseHTML = '<div class="exercise-item">' +
+    '<h3>Exercise ' + exerciseCount + ': ' + exerciseName + '</h3>' +
+    '<p>Description: ' + exerciseDesc + '</p>' +
+    '<p>Reps: ' + exerciseReps + '</p>' +
+    '</div>';
+
+  workoutSectionEl.append(exerciseHTML);
+  exerciseCount++;
 
   $('input[type="text"]').val('');
   $('input[type="number"]').val('');
