@@ -1,57 +1,3 @@
-// // get current day of the week
-// const days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
-// const currentDay = days[new Date().getDay()];
-// var schedule = document.querySelector("#schedule");
-// console.log(schedule.children)
-
-// function colorCode() {
-//   let day = dayjs().day();
-//   let dayString = "day-" + day;
-//   console.log(schedule.length)
-//   for (let i = 0; i < schedule.children.length; i++) {
-//     if (schedule.children[i].getAttribute("id") == dayString) {
-//       schedule.children[i].setAttribute("class", "border-box current-day");
-//     }
-//   }
-// }
-
-// var array = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
-
-// function eventFunction(event) {
-//   console.log(event.target.id + " has been clicked.");
-// }
-
-// // add event listeners to each day
-// for (var i = 0; i < array.length; i++) {
-//   document.getElementById(array[i]).addEventListener('click', eventFunction);
-// }
-
-// colorCode();
-// // create border boxes for the week
-// const borderBoxes = [
-//   { day: 'Sunday' },
-//   { day: 'Monday' },
-//   { day: 'Tuesday' },
-//   { day: 'Wednesday' },
-//   { day: 'Thursday' },
-//   { day: 'Friday' },
-//   { day: 'Saturday' }
-// ];
-
-// // filter border boxes for current day
-// const currentDayBox = borderBoxes.find(box => box.day === currentDay);
-
-// // create HTML for border boxes
-// const borderBoxHTML = borderBoxes.map(box => {
-//   const classes = ['border-box'];
-//   if (box.day === currentDay) {
-//     classes.push('current-day');
-//   }
-//   return `<div class="${classes.join(' ')}">${box.day}</div>`;
-// }).join('');
-
-// // display border boxes on page
-// document.getElementsByClassName('border-boxes').innerHTML = borderBoxHTML;
 
 //form submit section
 var formEl = $('#add-exercise');
@@ -95,6 +41,23 @@ exerciseCount++;
 }
 
 formEl.on('submit', handleFormSubmit);
+
+let schedule = {
+  monday: [],
+  tuesday: [],
+  wednesday: [],
+  thursday: [],
+  friday: [],
+  saturday: [],
+  sunday: []
+};
+
+function addContent(day) {
+  let content = prompt('Enter content for ' + day + ':');
+  schedule[day].push(content);
+  let cell = document.getElementById(day);
+  cell.innerHTML = schedule[day].join('<br>');
+}
 
 
 
