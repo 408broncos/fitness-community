@@ -67,19 +67,41 @@ const exerciseOptions = {
     ]
 }
 
+function saveWorkout() {
+    localStorage.setItem("workouts", JSON.stringify(weeklyWorkoutArray));
+}
+
 function constructWorkoutSection() {
     let workoutHeader = document.createElement("h2");
     workoutHeader.textContent = daysOfTheWeek[activeDay] + " Workout";
     let dailyWorkoutArray = weeklyWorkoutArray[activeDay];
-    let workoutOl = document.createElement("ol");
+    let workoutItems = document.createElement("div");
+    workoutItems.setAttribute("class", "w-100 flex flex-column");
     for (let i = 0; i < dailyWorkoutArray.length; i++) {
-        let exerciseLi = document.createElement("li");
-        exerciseLi.innerHTML = "<h3>" + dailyWorkoutArray[i].name + "</h3><p>Reps: " + dailyWorkoutArray[i].reps + "</p>";
-        workoutOl.appendChild(exerciseLi);
+        let exerciseDiv = document.createElement("div");
+        exerciseDiv.setAttribute("class", "listed-exercise w-100 flex justify-between bg-white pa3 ph4 mv3 outline br2");
+        exerciseDiv.setAttribute("data-position", i);
+        let exerciseNumber = i + 1;
+        exerciseDiv.innerHTML = "<span class='exercise-number'>" +
+            exerciseNumber + "</span> <span class='exercise-name'>" +
+            dailyWorkoutArray[i].name + "</span><span class='exercise-reps'>Reps: " +
+            dailyWorkoutArray[i].reps + "</span>";
+        workoutItems.appendChild(exerciseDiv);
     }
     workoutSection.innerHTML = "";
     workoutSection.appendChild(workoutHeader);
-    workoutSection.appendChild(workoutOl);
+    workoutSection.appendChild(workoutItems);
+}
+
+function addExerciseToSchedule(name, reps, desc) {
+    let exerciseObject = {
+        name: name,
+        reps: reps,
+        desc: desc,
+    };
+    weeklyWorkoutArray[activeDay].push(exerciseObject);
+    saveWorkout();
+    constructWorkoutSection();
 }
 
 //form submit section
@@ -90,51 +112,40 @@ var repEl = $('input[type="number"]');
 var workoutSectionEl = $('#workout');
 // var exerciseCount = 1;
 
-function addExerciseToSchedule(name, reps, desc) {
-    let exerciseObject = {
-        name: name,
-        reps: reps,
-        desc: desc,
-    };
-    weeklyWorkoutArray[activeDay].push(exerciseObject);
-    console.log(weeklyWorkoutArray);
-}
+// function handleFormSubmit(event) {
+//     event.preventDefault();
 
-function handleFormSubmit(event) {
-    event.preventDefault();
+//     console.log(nameEl, nameEl.val());
+//     console.log(descripEl.val());
+//     console.log(repEl.val());
 
-    console.log(nameEl, nameEl.val());
-    console.log(descripEl.val());
-    console.log(repEl.val());
+//     var exerciseName = nameEl.val();
+//     var exerciseDesc = descripEl.val();
+//     var exerciseReps = repEl.val();
+//     var checkedEl = $('input:checked');
 
-    var exerciseName = nameEl.val();
-    var exerciseDesc = descripEl.val();
-    var exerciseReps = repEl.val();
-    var checkedEl = $('input:checked');
+//     $.each(checkedEl, function (i, elm) {
+//         console.log("elm");
+//         console.log(elm);
+//         console.log(elm.value);
+//         console.log($(elm));
+//         selected.push($(elm).val());
+//     });
 
-    $.each(checkedEl, function (i, elm) {
-        console.log("elm");
-        console.log(elm);
-        console.log(elm.value);
-        console.log($(elm));
-        selected.push($(elm).val());
-    });
+//     var exerciseHTML = '<div class="exercise-item">' +
+//         '<h3>Exercise ' + exerciseCount + ': ' + exerciseName + '</h3>' +
+//         '<p>Description: ' + exerciseDesc + '</p>' +
+//         '<p>Reps: ' + exerciseReps + '</p>' +
+//         '</div>';
 
-    var exerciseHTML = '<div class="exercise-item">' +
-        '<h3>Exercise ' + exerciseCount + ': ' + exerciseName + '</h3>' +
-        '<p>Description: ' + exerciseDesc + '</p>' +
-        '<p>Reps: ' + exerciseReps + '</p>' +
-        '</div>';
+//     workoutSectionEl.append(exerciseHTML);
+//     exerciseCount++;
 
-    workoutSectionEl.append(exerciseHTML);
-    exerciseCount++;
+//     $('input[type="text"]').val('');
+//     $('input[type="number"]').val('');
+// }
 
-    $('input[type="text"]').val('');
-    $('input[type="number"]').val('');
-}
-
-formEl.on('click', handleFormSubmit);
-
+// formEl.on('click', handleFormSubmit);
 
 function searchForExercises(event) {
     event.preventDefault();
@@ -163,32 +174,76 @@ function searchForExercises(event) {
             button.setAttribute("data-position", i);
             newIdeasButtonArea.appendChild(button);
         }
-
         suggestionList = data;
-
     });
+}
+
+function popupNewExerciseDetails(event) {
+    let element = event.target;
+    if (element.tagName == "BUTTON") {
+        let modal = new jBox('Modal', {
+            width: 600,
+            height: 600,
+            responsiveWidth: true,
+            responsiveHeight: true,
+        });
+        let exerciseObject = suggestionList[element.dataset.position];
+        console.log(exerciseObject);
+        let name = "<h2>" + exerciseObject.name + "</h2>";
+        let difficulty = "<p class='b'>Difficulty: <span class='ttc'>" + exerciseObject.difficulty + "</span></p>";
+        let equipment = "<p>Equipment: <span class='ttc'>" + exerciseObject.equipment + "</span></p>";
+        let muscle = "<p>Muscle Group: <span class='ttc'>" + exerciseObject.muscle + "</span></p>";
+        let type = "<p>Exercise Type: <span class='ttc'>" + exerciseObject.type + "</span></p>";
+        let instructions = "<p><span class='b underline'>Instructions</span><br>" + exerciseObject.instructions + "</p>";
+        let repsLabel = "<label for='modal-reps'>Number of Reps</label>"
+        let repsInput = document.createElement("input");
+        repsInput.setAttribute("type", "number");
+        repsInput.setAttribute("name", "modal-reps");
+
+        let buttonDiv = document.createElement("div");
+        buttonDiv.setAttribute("class", "pa3");
+        let addToWorkoutBtn = document.createElement("button")
+        addToWorkoutBtn.setAttribute("class", "btn");
+        addToWorkoutBtn.setAttribute("id", "add-to-workout-modal");
+        addToWorkoutBtn.textContent = "Add to Workout";
+        buttonDiv.appendChild(addToWorkoutBtn);
+        let contentAssembly = difficulty + equipment + muscle + type + instructions + repsLabel + repsInput.outerHTML + buttonDiv.outerHTML;
+        modal.setTitle(name).setContent(contentAssembly);
+        modal.open();
+
+        let listenerButton = document.getElementById("add-to-workout-modal");
+
+        listenerButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            console.log(event);
+            console.log("Listener works");
+            let reps = repsInput.value;
+            addExerciseToSchedule(exerciseObject.name, reps, exerciseObject.instructions);
+            modal.close();
+
+        })
+    }
 
 }
 
-function popupDetails(event) {
+function popupListedExercise(event) {
     let element = event.target;
-    console.log(element);
-    let modal = new jBox('Modal', {
-        width: 600,
-        height: 600,
-        responsiveWidth: true,
-        responsiveHeight: true,
+    if (element.classList.contains("listed-exercise")) {
+        let modal = new jBox('Modal', {
+            width: 600,
+            height: 600,
+            responsiveWidth: true,
+            responsiveHeight: true,
+        });
+        let exerciseObject = weeklyWorkoutArray[activeDay][element.dataset.position];
+        let name = exerciseObject.name;
+        let description = exerciseObject.desc;
+        modal.setTitle(name).setContent(description);
+        modal.open();
 
-    });
-    let exerciseObject = suggestionList[element.dataset.position];
-    console.log(exerciseObject);
-    let name = exerciseObject.name;
-    let instructions = exerciseObject.instructions;
-    let addToWorkoutBtn = "<button class='btn' id='add-to-workout-modal'>Add to Workout</button>";
+    }
 
-    modal.setTitle(name).setContent(instructions);
 
-    modal.open();
 }
 
 function changeActiveDay(event) {
@@ -219,7 +274,6 @@ function addExerciseHandler(event) {
     let reps = addExerciseRepsField.value;
     let desc = addExerciseDescriptionField.value;
     addExerciseToSchedule(name, reps, desc);
-    constructWorkoutSection();
 }
 
 function init() {
@@ -228,8 +282,9 @@ function init() {
     constructWorkoutSection();
     findExerciseForm.addEventListener("submit", searchForExercises);
     addExerciseForm.addEventListener("submit", addExerciseHandler)
-    newIdeasButtonArea.addEventListener("click", popupDetails);
+    newIdeasButtonArea.addEventListener("click", popupNewExerciseDetails);
     scheduleDays.addEventListener("click", changeActiveDay);
+    workoutSection.addEventListener("click", popupListedExercise)
 }
 
 init();

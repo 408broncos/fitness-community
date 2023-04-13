@@ -60,8 +60,8 @@
     <main class="w-100 sans-serif dn" id="signed-in-content">
         <section id="workout" class="fl w-25 vh-100 pa2 flex flex-column items-center bg-washed-red ">
         </section>
-        <section class="fr w-75 vh-100 pa2 bg-washed-blue">
-            <section id="weekly-schedule" class="dark-blue pa3 flex flex-column items-center">
+        <section class="fr w-75 vh-100 pa2 bg-washed-blue debug">
+            <section id="weekly-schedule" class="dark-blue pa3 flex flex-column items-center w-100">
                 <h2>Weekly Schedule</h2>
                 <div class="flex mw-100" id="schedule">
                     <span class="ba pa3 pa4-l ma2 tc v-mid" data-day="1" id="day-1">Mon</span>
@@ -73,7 +73,7 @@
                     <span class="ba pa3 pa4-l ma2" data-day="0" id="day-0">Sun</span>
                 </div>
             </section>
-            <section id="workbook" class="w-100 flex">
+            <section id="workbook" class="w-100">
                 <section id="add-exercise" class="fl w-40 h-100 pa2">
                     <form class="card pa3" id="add-exercise-form">
                         <h3>Add an Exercise</h3>
@@ -89,7 +89,7 @@
 
                     </form>
                 </section>
-                <section id="new-ideas" class="w-65 pa2 flex flex-column">
+                <section id="new-ideas" class="fr w-60 pa2 flex flex-column">
                     <section id="find-exercise" class="card pa3">
                         <form id="find-exercise-form">
                             <div class="w-100">
@@ -98,13 +98,13 @@
                                     some suggestions.</p>
                             </div>
                             <div class="w-100 pa1 flex flex-column justify-between">
-                                <div class="w-50-l ma3 flex flex-column flex-row-l justify-between-l">
+                                <div class="ma3 flex flex-column flex-row-l justify-between-l">
                                     <label>Filter by Word</label>
                                     <input type="text" name="exercise-name" placeholder="ex. press, sit, etc.">
                                 </div>
-                                <div class="w-50-l ma3 flex flex-column flex-row-l justify-between-l">
+                                <div class="ma3 flex flex-column flex-row-l justify-between-l">
                                     <label class="w-50">Filter by Type</label>
-                                    <select id="type" name="type" class="w-50">
+                                    <select id="type" name="type">
                                         <option value="" selected="selected">Select a type...</option>
                                         <option value="cardio">Cardio</option>
                                         <option value="olympic_weightlifting">Olympic Weightlifting</option>
@@ -115,9 +115,9 @@
                                         <option value="strongman">Strongman</option>
                                     </select>
                                 </div>
-                                <div class="w-50-l ma3 flex flex-column flex-row-l justify-between-l">
-                                    <label class="w-50">Filter by Muscle</label>
-                                    <select class="w-50" id="muscle" name="muscle">
+                                <div class="ma3 flex flex-column flex-row-l justify-between-l">
+                                    <label>Filter by Muscle</label>
+                                    <select id="muscle" name="muscle">
                                         <option value="" selected="selected">Select a muscle...</option>
                                         <option value="abdominals">Abdominals</option>
                                         <option value="abductors">Abductors</option>
@@ -137,7 +137,7 @@
                                         <option value="triceps">Triceps</option>
                                     </select>
                                 </div>
-                                <div class="w-25-l ma3 flex flex-column">
+                                <div class="ma3 flex flex-column flex-row-l justify-between-l">
                                     <label>Filter by Difficulty</label>
                                     <select id="difficulty" name="difficulty">
                                         <option value="" selected="selected">Select a difficulty...</option>
