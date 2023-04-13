@@ -58,6 +58,8 @@ var formEl = $('#add-exercise');
 var nameEl = $('input[name="exercise-name"]');
 var descripEl = $('textarea[name="exercise-desc"]');
 var repEl = $('input[type="number"]');
+var workoutSectionEl = $('#workout');
+var exerciseCount = 1;
 
 function handleFormSubmit(event) {
   event.preventDefault();
@@ -66,21 +68,10 @@ function handleFormSubmit(event) {
   console.log(descripEl.val());
   console.log(repEl.val());
 
-  var checkedEl = $('input:checked');
-  console.log(checkedEl);
-  var selected = [];
-
-  // https://api.jquery.com/jquery.each/
- 
-  
-  // Loop through checked options to store in array
-  //Because there can be more than one checked item, we need to select the checked elements and store them in an array using the jQuery $.each() method:
-  // $.each(checkedEl, function () {
-  //   console.log("this");
-  //   console.log(this.value);
-    // console.log($(this));
-    // selected.push($(this).val());
-  // });
+  var exerciseName = nameEl.val();
+  var exerciseDesc = descripEl.val();
+  var exerciseReps = repEl.val();
+  var checkedEl = $('input:checked'); 
 
    $.each(checkedEl, function (i, elm) {
     console.log("elm");
@@ -90,19 +81,20 @@ function handleFormSubmit(event) {
     selected.push($(elm).val());
   });
   
-  for(var i = 0; i < checkedEl.length; i++){
-    console.log("*********")
-    console.log(checkedEl[i]);
-    console.log(checkedEl[i].value);
-    console.log($(checkedEl[i]).val());
-    // console.log(checkedEl[i].val());
-  }
+  var exerciseHTML = '<div class="exercise-item">' +
+  '<h3>Exercise ' + exerciseCount + ': ' + exerciseName + '</h3>' +
+  '<p>Description: ' + exerciseDesc + '</p>' +
+  '<p>Reps: ' + exerciseReps + '</p>' +
+'</div>';
+
+workoutSectionEl.append(exerciseHTML);
+exerciseCount++;
 
   $('input[type="text"]').val('');
   $('input[type="number"]').val('');
-  // https://api.jquery.com/prop/
-  // $('input[type="checkbox"]').prop('checked', false);
 }
 
 formEl.on('submit', handleFormSubmit);
+
+
 
