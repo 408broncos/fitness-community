@@ -1,8 +1,7 @@
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
-import { getDatabase } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
-// import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-analytics.js";
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -24,7 +23,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const database = getDatabase(app);
 
 const signup = document.getElementById("sign-up");
 const login = document.getElementById("login");
@@ -42,7 +40,7 @@ function appendErrorMessage(message) {
     errorMessageSection.appendChild(div);
 }
 
-function toggleSignIn() {
+function simulateRedirect() {
     document.getElementById("signed-in-content").classList.toggle("dn");
     document.getElementById("signed-out-content").classList.toggle("dn");
 }
@@ -63,7 +61,7 @@ function loginHandler(event) {
             console.log("Login Success!")
             console.log(user);
             // ...
-            toggleSignIn();
+            simulateRedirect();
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -94,7 +92,7 @@ function signupHandler(event) {
             }).then(function () {
                 console.log(user)
                 // ...
-                toggleSignIn()
+                simulateRedirect()
             });
 
 
@@ -113,4 +111,4 @@ function signupHandler(event) {
 
 login.addEventListener("submit", loginHandler);
 signup.addEventListener("submit", signupHandler);
-document.getElementById("toggle-signin").addEventListener("click", toggleSignIn);
+document.getElementById("toggle-signin").addEventListener("click", simulateRedirect);

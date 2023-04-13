@@ -63,3 +63,7 @@ section .splash{
 .bg-custom-orange {
     background-color: var(--orange);
 }
+
+.listed-exercise {
+    cursor: pointer;
+}

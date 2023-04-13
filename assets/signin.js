@@ -1,67 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css" />
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
-    <link href="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.2/dist/jBox.all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/style.css">
-    <link rel="stylesheet" href="assets/workout.css">
-    <title>Fitness Community</title>
-</head>
-
-<body class="sans-serif">
-    <header class="flex w-100">
-        <div class="wrapper flex w-100 justify-between">
-            <h1>Fitness Community</h1>
-            <button id="toggle-signin">Toggle Sign-in</button>
-        </div>
-    </header>
-    <section class="sans-serif" id="signed-out-content">
-        <section class="flex flex-column pt5 items-center justify-center" id="branding">
-            <img src="assets/dumbbell-heart.png" id="logo">
-            <h2>Make a plan and stick to it!</h2>
+const signedincontent = `
+<section id="workout" class="fl w-25 vh-100 pa2 flex flex-column items-center bg-washed-red ">
+            <h2 class="">Workout Section</h2>
         </section>
-        <section class="flex pa4" id="form-section">
-            <div class="w-50 ma3">
-                <form class="card pa4" id="login">
-                    <div class="pa2 ph4 mb3 bg-light-green br3">
-                        <h2>Returning users!</h2>
-                        <p>Welcome back! Login to proceed.</p>
-                    </div>
-                    <fieldset class="flex flex-column items-center">
-                        <input type="login-email" placeholder="Email" class="mb2 pa2" />
-                        <input type="login-password" placeholder="Password" class="mb2 pa2" />
-                        <button type="submit" class="mw5">Login</button>
-                    </fieldset>
-                </form>
-            </div>
-            <div class="w-50 ma3">
-                <form class="card pa4" id="sign-up">
-                    <div class="pa2 ph4 mb3 bg-custom-orange br3">
-                        <h2>First time?</h2>
-                        <p>Welcome! Create a sign-up to proceed.</p>
-                    </div>
-                    <fieldset class="flex flex-column items-center">
-                        <input type="text" id="sign-up-name" placeholder="Name" class="mb2 pa2" />
-                        <input type="email" id="sign-up-email" placeholder="Email Address" class="mb2 pa2" />
-                        <input type="password" id="sign-up-password" placeholder="Password" class="mb2 pa2" />
-                        <button type="submit">Submit</button>
-                    </fieldset>
-                </form>
-            </div>
-        </section>
-        <section id="error-message"></section>
-    </section>
-
-    <main class="w-100 sans-serif dn" id="signed-in-content">
-        <section id="workout" class="fl w-25 vh-100 pa2 flex flex-column items-center bg-washed-red ">
-        </section>
-        <section class="fr w-75 vh-100 pa2 bg-washed-blue debug">
-            <section id="weekly-schedule" class="dark-blue pa3 flex flex-column items-center w-100">
+        <section class="fr w-75 vh-100 pa2 bg-washed-blue">
+            <section id="weekly-schedule" class="dark-blue pa3 flex flex-column items-center">
                 <h2>Weekly Schedule</h2>
                 <div class="flex mw-100" id="schedule">
                     <span class="ba pa3 pa4-l ma2 tc v-mid" data-day="1" id="day-1">Mon</span>
@@ -73,23 +15,23 @@
                     <span class="ba pa3 pa4-l ma2" data-day="0" id="day-0">Sun</span>
                 </div>
             </section>
-            <section id="workbook" class="w-100">
+            <section id="workbook" class="w-100 flex">
                 <section id="add-exercise" class="fl w-40 h-100 pa2">
-                    <form class="card pa3" id="add-exercise-form">
+                    <form class="card pa3">
                         <h3>Add an Exercise</h3>
                         <div class="w-100 pa1 flex flex-column">
                             <label for="exercise-name" class="mb1">Name</label>
                             <input type="text" name="exercise-name" class="mb3">
                             <label for="exercise-desc" class="mb1">Description</label>
                             <textarea name="exercise-desc" rows="4" cols="40" class="mb3"></textarea>
-                            <label for="exercise-reps">Number of Reps</label>
-                            <input type="number" name="exercise-reps">
+                            <label>Number of Reps</label>
+                            <input type="number">
                             <button type="submit" class="btn pa2 mv3">Add to Workout</button>
                         </div>
 
                     </form>
                 </section>
-                <section id="new-ideas" class="fr w-60 pa2 flex flex-column">
+                <section id="new-ideas" class="w-65 pa2 flex flex-column">
                     <section id="find-exercise" class="card pa3">
                         <form id="find-exercise-form">
                             <div class="w-100">
@@ -98,13 +40,13 @@
                                     some suggestions.</p>
                             </div>
                             <div class="w-100 pa1 flex flex-column justify-between">
-                                <div class="ma3 flex flex-column flex-row-l justify-between-l">
+                                <div class="w-50-l ma3 flex flex-column flex-row-l justify-between-l">
                                     <label>Filter by Word</label>
                                     <input type="text" name="exercise-name" placeholder="ex. press, sit, etc.">
                                 </div>
-                                <div class="ma3 flex flex-column flex-row-l justify-between-l">
+                                <div class="w-50-l ma3 flex flex-column flex-row-l justify-between-l">
                                     <label class="w-50">Filter by Type</label>
-                                    <select id="type" name="type">
+                                    <select id="type" name="type" class="w-50">
                                         <option value="" selected="selected">Select a type...</option>
                                         <option value="cardio">Cardio</option>
                                         <option value="olympic_weightlifting">Olympic Weightlifting</option>
@@ -115,9 +57,9 @@
                                         <option value="strongman">Strongman</option>
                                     </select>
                                 </div>
-                                <div class="ma3 flex flex-column flex-row-l justify-between-l">
-                                    <label>Filter by Muscle</label>
-                                    <select id="muscle" name="muscle">
+                                <div class="w-50-l ma3 flex flex-column flex-row-l justify-between-l">
+                                    <label class="w-50">Filter by Muscle</label>
+                                    <select class="w-50" id="muscle" name="muscle">
                                         <option value="" selected="selected">Select a muscle...</option>
                                         <option value="abdominals">Abdominals</option>
                                         <option value="abductors">Abductors</option>
@@ -137,7 +79,7 @@
                                         <option value="triceps">Triceps</option>
                                     </select>
                                 </div>
-                                <div class="ma3 flex flex-column flex-row-l justify-between-l">
+                                <div class="w-25-l ma3 flex flex-column">
                                     <label>Filter by Difficulty</label>
                                     <select id="difficulty" name="difficulty">
                                         <option value="" selected="selected">Select a difficulty...</option>
@@ -154,18 +96,4 @@
                 </section>
                 <section class="flex flex-wrap justify-center w-100" id="button-area"></section>
             </section>
-    </main>
-
-    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
-    <!-- jBox code -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.2/dist/jBox.all.min.js"></script>
-    <!-- <script src="assets/script.js"></script> -->
-    <script src="assets/workout.js" type="module"></script>
-    <script src="assets/signin.js"></script>
-    <script src="assets/firebase.js" type="module"></script>
-</body>
-
-</html>
+`
