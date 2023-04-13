@@ -17,6 +17,12 @@ const newIdeasButtonArea = document.getElementById("button-area");
 const findExerciseForm = document.getElementById("find-exercise-form");
 const scheduleDays = document.getElementById("schedule");
 const daysOfTheWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const removeExerciseButton = document.createElement("button");
+removeExerciseButton.setAttribute("class", "remove-exercise bg-dark-red white b");
+removeExerciseButton.textContent = "X";
+const clearWorkoutDayBtn = document.createElement("button");
+clearWorkoutDayBtn.setAttribute("class", "absolute bottom-2 right-0 left-0 pa3 btn");
+clearWorkoutDayBtn.textContent = "Clear All";
 
 let activeDay;
 let suggestionList;
@@ -86,11 +92,13 @@ function constructWorkoutSection() {
             exerciseNumber + "</span> <span class='exercise-name'>" +
             dailyWorkoutArray[i].name + "</span><span class='exercise-reps'>Reps: " +
             dailyWorkoutArray[i].reps + "</span>";
+        exerciseDiv.appendChild(removeExerciseButton);
         workoutItems.appendChild(exerciseDiv);
     }
     workoutSection.innerHTML = "";
     workoutSection.appendChild(workoutHeader);
     workoutSection.appendChild(workoutItems);
+    workoutSection.appendChild(clearWorkoutDayBtn);
 }
 
 function addExerciseToSchedule(name, reps, desc) {
@@ -212,12 +220,13 @@ function popupNewExerciseDetails(event) {
         modal.open();
 
         let listenerButton = document.getElementById("add-to-workout-modal");
+        let repsInputEl = document.querySelector("input[name='modal-reps']");
 
         listenerButton.addEventListener("click", function (event) {
             event.preventDefault();
             console.log(event);
             console.log("Listener works");
-            let reps = repsInput.value;
+            let reps = repsInputEl.value;
             addExerciseToSchedule(exerciseObject.name, reps, exerciseObject.instructions);
             modal.close();
 
