@@ -271,20 +271,17 @@ function clearDaySchedule() {
 function updateAQI(aqius, icon) {
     let aqidiv = document.createElement("div");
     aqidiv.setAttribute("id", "aqi-display-block");
-    aqidiv.setAttribute("class", "flex items-center bg-white br3 ph2 pv1 mt3")
+    aqidiv.setAttribute("class", "flex flex-column justify-center items-center bg-white br3 ph2 pv1 mv2")
     let aqispan = document.createElement("span");
     aqispan.textContent = "AQI: " + aqius;
-    aqispan.setAttribute("class", "mr2");
+    aqispan.setAttribute("class", "");
     let iconurl = iqAirImage + icon + ".png";
     let iconimg = document.createElement("img");
     iconimg.setAttribute("src", iconurl);
     iconimg.setAttribute("class", "mw2");
-    let currentday = dayjs().day();
-    let currentdayid = "day-" + currentday;
-    let currentdaybox = document.getElementById(currentdayid);
     aqidiv.appendChild(aqispan);
     aqidiv.appendChild(iconimg);
-    currentdaybox.appendChild(aqidiv);
+    document.getElementById("aqi-receiver").appendChild(aqidiv);
 
 }
 
