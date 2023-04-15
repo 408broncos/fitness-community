@@ -124,6 +124,11 @@ Learning Objectives
 Authors / Contact
 
 
+### Firebase Authentication
+
+Because our initial vision for the application centered around a social experience - things like sharing and liking posts, commenting on workouts, etc. - we had looked at Firebase as a
+
+
 
 ## CSS Framework (Tachyons)
 
