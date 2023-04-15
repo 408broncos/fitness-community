@@ -108,12 +108,30 @@ Sample response snippet:
           "aqicn": 30
         },
 ```
+### HTML
+
+Created forms where the user can sign up if they are a first time user or simply login if they are a returning user.
+
+![Demo of forms](/assets/images/html.gif)
 
 ### Javascript Libraries (jBox)
 
-Because the Exercises API returns exercise 
+Because the Exercises API returns exercises we decided to add modals that pops up with an excercises name, level of difficulty, equipment needed if any, what muscle it targets, what exercise type it is and a instructions for how to do the workout. You also get to choose the amount of reps that you want for that workout and you get to choose if you want to add the workoout to your daily workout schedule or not.
+
+![Demo of modals](/assets/images/demo.gif)
 
 
+### Day.js
+
+We used Day.js to setup our weekly schedule. We get days Monday through Sunday and the current day is highlighted in blue.
+
+![Weekly Schedule](assets/images/weekly.png)
+
+
+
+
+
+### 
 TODO:
 Technologies used
 Supportive Gif of that feature
