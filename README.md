@@ -108,18 +108,31 @@ Sample response snippet:
           "aqicn": 30
         },
 ```
-### HTML
 
-Created forms where the user can sign up if they are a first time user or simply login if they are a returning user.
+### Firebase Authentication
 
-![Demo of forms](/assets/images/html.gif)
+Because our initial vision for the application centered around a social experience - things like sharing and liking posts, commenting on workouts, etc. - we started looking at Firebase as a way to utilize a database without the need to set up a server environment. (We had decided at the start that Node.js fell outside the scope of this particular project.)  
 
-### Javascript Libraries (jBox)
+We got pretty far down the "Firebase Database solution" path before determining that it wasn't going to work. (We still actually think it *might* work, but we decided it wasn't worth our time.)  However, because were able to implement the Firebase Authentication login/signup UI, we decided to go ahead and include it. If we continue to develop the project, then it's there for us to use. If we don't, it's still fun to play around with!
 
-Because the Exercises API returns exercises we decided to add modals that pops up with an excercises name, level of difficulty, equipment needed if any, what muscle it targets, what exercise type it is and a instructions for how to do the workout. You also get to choose the amount of reps that you want for that workout and you get to choose if you want to add the workoout to your daily workout schedule or not.
+>Please note: this is a pseudo-implementation. The entire HTML structure is available to logged-out users. It's just hidden on initial page load.
+>
+>We've made this even more explicit by including a handy "Toggle Sign-in" button that switches between the states.
+
+Aside from being fun to play with, it also allowed us to add a few nice touches to personalize the experience. A successful login or account creation returns a `userCredential` object that includes a `displayName` and a `uid`.  That meant we could add the user's name to the header to give them a little welcome message, as well as save their workouts to `localStorage` using their ID number as a unique key.
+
+![How we used Firebase Authentication](assets/images/firebase-auth.gif)
+
+---
+## Javascript Libraries 
+
+### jBox
+
+Because the Exercises API returns a lot more information about the exercises than just their names, we needed a way to display that information to the user that didn't clog up the viewport.  After a little tooling around, we found a nice modal solution in [jBox by Stephan Wagner](https://stephanwagner.me/jBox).
+
+We decided to add modals that pop up to show name, level of difficulty, equipment needed (if any), the muscle group targeted, the exercise type, and instructions for how to perform the exercise. You also get to choose the amount of reps that you want for that workout and you get to choose if you want to add the workoout to your daily workout schedule or not.
 
 ![Demo of modals](/assets/images/demo.gif)
-
 
 ### Day.js
 
@@ -127,27 +140,7 @@ We used Day.js to setup our weekly schedule. We get days Monday through Sunday a
 
 ![Weekly Schedule](assets/images/weekly.png)
 
-
-
-
-
-### 
-TODO:
-Technologies used
-Supportive Gif of that feature
-Any relevant code snippets - Description of why it is significant
-Description of CSS framework used (links to Docs)
-Gif of site at different screen sizes
-Learning Objectives
-Authors / Contact
-
-
-### Firebase Authentication
-
-Because our initial vision for the application centered around a social experience - things like sharing and liking posts, commenting on workouts, etc. - we had looked at Firebase as a
-
-
-
+---
 ## CSS Framework (Tachyons)
 
 We used the [Tachyons CSS Toolkit](http://tachyons.io/) as a framework. As a team, most of our experience using CSS frameworks has been with Bootstrap, so we wanted to explore other options. 
@@ -157,3 +150,12 @@ We settled on Tachyons because it had a nice balance of features and styling. We
 The responsive properties in Tachyons are a little stiff, but it was fine for these purposes.
 
 ![Gif of the application at different sizes](assets/images/mobile-responsive.gif)
+
+---
+## Other Technologies
+
+### HTML
+
+We created forms where the user can sign up if they are a first time user or simply login if they are a returning user.
+
+![Demo of forms](/assets/images/html.gif)
