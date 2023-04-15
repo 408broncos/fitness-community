@@ -130,3 +130,7 @@ Authors / Contact
 We used the [Tachyons CSS Toolkit](http://tachyons.io/) as a framework. As a team, most of our experience using CSS frameworks has been with Bootstrap, so we wanted to explore other options. 
 
 We settled on Tachyons because it had a nice balance of features and styling. We wanted to lay things out quickly and not get bogged down in CSS, so we looked for a framework that gave us easy controls over flexbox, sizing, spacing, and a few colors.
+
+The responsive properties in Tachyons are a little stiff, but it was fine for these purposes.
+
+![Gif of the application at different sizes](assets/images/mobile-responsive.gif)
