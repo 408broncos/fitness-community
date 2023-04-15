@@ -13,11 +13,11 @@
 </head>
 
 <body class="sans-serif">
-    <header class="wrapper flex w-100 items-baseline justify-between">
-        <h1>Fitness Community</h1>
+    <header class="wrapper flex flex-wrap vw-100 items-baseline justify-between ">
+        <h1 class="lh-title lh-solid-ns">Fitness Community</h1>
         <div>
             <span class="white dn" id="user-display-name"></span>
-            <button id="toggle-signin">Toggle Sign-in</button>
+            <button class="" id="toggle-signin">Toggle Sign-in</button>
         </div>
     </header>
     <section class="sans-serif" id="signed-out-content">
@@ -25,8 +25,8 @@
             <img src="assets/images/dumbbell-heart.png" id="logo">
             <h2>Make a plan and stick to it!</h2>
         </section>
-        <section class="flex pa4" id="form-section">
-            <div class="w-50 ma3">
+        <section class="flex flex-column flex-row-ns pa4" id="form-section">
+            <div class="w-100 w-50-ns ma3">
                 <form class="card pa4 bg-dark-green" id="login">
                     <div class="pa2 ph4 mb3 bg-light-green br3">
                         <h2>Returning users!</h2>
@@ -39,7 +39,7 @@
                     </fieldset>
                 </form>
             </div>
-            <div class="w-50 ma3">
+            <div class="w-100 w-50-ns ma3">
                 <form class="card pa4 bg-gold" id="sign-up">
                     <div class="pa2 ph4 mb3 bg-light-yellow br3">
                         <h2>First time?</h2>
@@ -58,21 +58,31 @@
     </section>
 
     <main class="w-100 sans-serif dn" id="signed-in-content">
-        <section id="workout" class="relative fl w-25 vh-100 pa4 flex flex-column items-center bg-moon-gray">
+        <section id="workout"
+            class="relative fl-l w-100 w-25-l vh-100-l pa4 flex flex-column items-center bg-moon-gray">
         </section>
-        <section class="fr w-75 vh-100 pa2">
-            <section id="weekly-schedule" class="pa3 flex flex-column items-center w-100">
+        <section class="fr-l w-100 w-75-l vh-100 pa2">
+            <section id="weekly-schedule" class="pa3 ph0-m flex flex-column items-center w-100">
                 <h2>Weekly Schedule</h2>
-                <div class="flex mw-100" id="schedule">
-                    <span class="ba pa3 pa4-l ma2 tc v-mid bg-white" data-day="1" id="day-1">Mon</span>
-                    <span class="ba pa3 pa4-l ma2 tc v-mid bg-white" data-day="2" id="day-2">Tue</span>
-                    <span class="ba pa3 pa4-l ma2 tc v-mid bg-white" data-day="3" id="day-3">Wed</span>
-                    <span class="ba pa3 pa4-l ma2 tc v-mid bg-white" data-day="4" id="day-4">Thu</span>
-                    <span class="ba pa3 pa4-l ma2 tc v-mid bg-white" data-day="5" id="day-5">Fri</span>
-                    <span class="ba pa3 pa4-l ma2 tc v-mid bg-white" data-day="6" id="day-6">Sat</span>
-                    <span class="ba pa3 pa4-l ma2 tc v-mid bg-white" data-day="0" id="day-0">Sun</span>
+                <div class="flex flex-wrap justify-center justify-between-m flex-nowrap-l w-100 mb2" id="schedule">
+                    <div class="flex flex-column ba tc v-mid bg-white w-100 w-10-ns ma1-ns pb5-ns" data-day="1"
+                        id="day-1">Mon
+                    </div>
+                    <div class="flex flex-column ba tc v-mid bg-white w-100 w-10-ns ma1-ns pb5-ns" data-day="2"
+                        id="day-2">Tue</div>
+                    <div class="flex flex-column ba tc v-mid bg-white w-100 w-10-ns ma1-ns pb5-ns" data-day="3"
+                        id="day-3">Wed</div>
+                    <div class="flex flex-column ba tc v-mid bg-white w-100 w-10-ns ma1-ns pb5-ns" data-day="4"
+                        id="day-4">Thu</div>
+                    <div class="flex flex-column ba tc v-mid bg-white w-100 w-10-ns ma1-ns pb5-ns" data-day="5"
+                        id="day-5">Fri</div>
+                    <div class="flex flex-column ba tc v-mid bg-white w-100 w-10-ns ma1-ns pb5-ns" data-day="6"
+                        id="day-6">Sat</div>
+                    <div class="flex flex-column ba tc v-mid bg-white w-100 w-10-ns ma1-ns pb5-ns" data-day="0"
+                        id="day-0">Sun</div>
                 </div>
-                <form class="flex justify-between" id="aqi-form">
+                <div id="aqi-receiver"></div>
+                <form class="flex flex-column flex-row-l justify-between" id="aqi-form">
                     <span class="mh2">Enter city to get current AQI</span>
                     <input type="text" name="city" id="aqi-city">
                     <select id="aqi-state">
@@ -85,7 +95,7 @@
                 </form>
             </section>
             <section id="workbook" class="w-100">
-                <section id="add-exercise" class="fl w-40 h-100 pa2">
+                <section id="add-exercise" class="fl-l w-100 w-40-l h-100-l pa2">
                     <form class="card pa3 bg-light-green" id="add-exercise-form">
                         <h3>Add an Exercise</h3>
                         <div class="w-100 pa1 flex flex-column">
@@ -100,7 +110,7 @@
 
                     </form>
                 </section>
-                <section id="new-ideas" class="fr w-60 pa2 flex flex-column">
+                <section id="new-ideas" class="fr-l w-60-l pa2 flex flex-column">
                     <section id="find-exercise" class="card pa3 bg-light-yellow">
                         <form id="find-exercise-form">
                             <div class="w-100">
@@ -164,7 +174,7 @@
                             </div>
                     </section>
                 </section>
-                <section class="flex flex-wrap justify-center w-100" id="button-area"></section>
+                <section class="flex flex-wrap justify-center w-100 pb5" id="button-area"></section>
             </section>
     </main>
 
