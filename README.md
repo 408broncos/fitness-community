@@ -94,11 +94,11 @@ Sample response snippet:
         "hu": 14,
         "ws": 1,
         "wd": 110,
-        "ic": "01d"  <- Weather Icon .
+        "ic": "01d"  <- Weather Icon
       },
       "pollution": {
         "ts": "2019-08-04T19:00:00.000Z",
-        "aqius": 70,  <- US Air Quality Index .
+        "aqius": 70,  <- US Air Quality Index
         "mainus": "p2",
         "aqicn": 30,
         "maincn": "p2",
@@ -122,3 +122,11 @@ Description of CSS framework used (links to Docs)
 Gif of site at different screen sizes
 Learning Objectives
 Authors / Contact
+
+
+
+## CSS Framework (Tachyons)
+
+We used the [Tachyons CSS Toolkit](http://tachyons.io/) as a framework. As a team, most of our experience using CSS frameworks has been with Bootstrap, so we wanted to explore other options. 
+
+We settled on Tachyons because it had a nice balance of features and styling. We wanted to lay things out quickly and not get bogged down in CSS, so we looked for a framework that gave us easy controls over flexbox, sizing, spacing, and a few colors.
